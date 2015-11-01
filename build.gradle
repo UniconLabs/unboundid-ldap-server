@@ -1,6 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
+apply plugin: 'application'
+
+defaultTasks 'clean', 'run'
+mainClassName = "com.unboundid.ldap.LdapServer"
 
 repositories {
     jcenter()
