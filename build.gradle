@@ -3,7 +3,7 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'application'
 
-defaultTasks 'clean', 'run'
+defaultTasks 'clean', 'build', 'run'
 mainClassName = "com.unboundid.ldap.LdapServer"
 
 repositories {
