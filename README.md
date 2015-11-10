@@ -6,7 +6,6 @@ On the command prompt, execute:
 
 ```bash
 gradlew
-gradle run
 ```
 
 Connect to the LDAP instance at `ldap://localhost:1389`
