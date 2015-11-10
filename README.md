@@ -14,7 +14,7 @@ Connect to the LDAP instance at `ldap://localhost:1389`
 
 Under `src/main/resources`:
 
-* Schema is defined via `standard-ldap.schema
+* Schema is defined via `standard-ldap.schema`
 * LDAP server settings are defined via `ldap.properties`
 * LDAP base layouts are defined via `ldap-base.ldif` and `users-groups.ldif`
 * Log configuration is defined via `log4j2.xml`
