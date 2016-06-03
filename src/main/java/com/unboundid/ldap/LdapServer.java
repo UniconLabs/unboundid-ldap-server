@@ -156,30 +156,28 @@ public final class LdapServer implements Closeable {
         LOGGER.debug("Shut down LDAP server.");
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        close();
-        super.finalize();
-    }
-
     public static void main(final String[] args) throws Exception {
-        final Thread th = new Thread(() -> {
-            try {
-                final LdapServer server =
-                        new LdapServer(new ClassPathResource("ldap.properties").getInputStream(),
-                        new ClassPathResource("ldap-base.ldif").getInputStream(),
-                        new ClassPathResource("standard-ldap.schema").getInputStream());
-                LOGGER.info("Connected to baseDn {}", server.getBaseDn());
-                LOGGER.info("{} ldap entries are available", server.getLdapEntries().size());
-            } catch (final Exception e) {
-                LOGGER.error(e.getMessage(), e);
+        try {
+            final Thread th = new Thread(() -> {
+                try {
+                    final LdapServer server =
+                            new LdapServer(new ClassPathResource("ldap.properties").getInputStream(),
+                            new ClassPathResource("ldap-base.ldif").getInputStream(),
+                            new ClassPathResource("standard-ldap.schema").getInputStream());
+                    LOGGER.info("Connected to baseDn {}", server.getBaseDn());
+                    LOGGER.info("{} ldap entries are available", server.getLdapEntries().size());
+                } catch (final Throwable e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
+
+            });
+            th.setDaemon(true);
+            th.start();
+            while (true) {
             }
-
-        });
-        th.setDaemon(true);
-        th.start();
-        while (true) {
+        } catch (final Throwable e) {
+            LOGGER.error(e.getMessage(), e);
         }
-
+        LOGGER.debug("Going away. Bye!");
     }
 }

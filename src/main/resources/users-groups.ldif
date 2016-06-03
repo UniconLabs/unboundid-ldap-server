@@ -1,16 +1,17 @@
 
-dn: cn=mmoayyed,ou=people,dc=example,dc=org
+dn: cn=casuser,ou=people,dc=example,dc=org
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: ad
 objectClass: inetOrgPerson
 cn: Misagh Moayyed
-sn: Moayyed
+sn: admin4523
 givenName: Misagh
 displayName: Misagh Moayyed
 sAMAccountName: mmoayyed
 mail: mmoayyed@example.org
+uid: mmoayyed
 userPrincipalName: mmoayyed@example.org
 userAccountControl: 66048
 distinguishedName: CN=mmoayyed,ou=people,dc=example,dc=org
@@ -28,13 +29,13 @@ objectClass: account
 cn: CAS Test
 givenName: CAS
 sn: CAS
-uid: CASTest
+uid: casTest
 displayName: CAS Test
 sAMAccountName: casTest
 distinguishedName: CN=casTest,ou=people,dc=example,dc=org
 mail: casTest@example.org
-userPassword: thePassw0rd
-unicodePwd: ignoredForTests
+userPassword: casTest
+unicodePwd: casTest
 userPrincipalName: castest@example.org
 userAccountControl: 66048
 host: localhost
