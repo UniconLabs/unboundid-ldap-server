@@ -76,7 +76,7 @@ public final class LdapServer implements Closeable {
 
             config.setEnforceSingleStructuralObjectClass(false);
             config.setEnforceAttributeSyntaxCompliance(true);
-
+            config.setMaxConnections(-1);
 
             final File file = File.createTempFile("ldap", "schema");
             try (final OutputStream outputStream = new FileOutputStream(file)) {
@@ -162,8 +162,8 @@ public final class LdapServer implements Closeable {
                 try {
                     final LdapServer server =
                             new LdapServer(new ClassPathResource("ldap.properties").getInputStream(),
-                            new ClassPathResource("ldap-base.ldif").getInputStream(),
-                            new ClassPathResource("standard-ldap.schema").getInputStream());
+                                    new ClassPathResource("ldap-base.ldif").getInputStream(),
+                                    new ClassPathResource("standard-ldap.schema").getInputStream());
                     LOGGER.info("Connected to baseDn {}", server.getBaseDn());
                     LOGGER.info("{} ldap entries are available", server.getLdapEntries().size());
                 } catch (final Throwable e) {
