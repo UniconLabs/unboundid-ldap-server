@@ -101,6 +101,9 @@ public final class LdapServer implements Closeable {
             final LDAPConnection c = getConnection();
             LOGGER.debug("Connected to {}:{}", c.getConnectedAddress(), c.getConnectedPort());
 
+            LOGGER.debug("Bind DN: {}",  p.getProperty("ldap.managerDn"));
+            LOGGER.debug("Bind credential: {}", p.getProperty("ldap.managerPassword"));
+
             populateDefaultEntries(c);
 
             c.close();
@@ -131,6 +134,10 @@ public final class LdapServer implements Closeable {
         this.ldapEntries = LdapTestUtils.readLdif(rs, getBaseDn());
         LdapTestUtils.createLdapEntries(c, ldapEntries);
         populateEntriesInternal(c);
+
+        for (LdapEntry entry : this.ldapEntries) {
+            LOGGER.debug("Added entry DN: {}", entry.getDn());
+        }
     }
 
     protected void populateEntriesInternal(final LDAPConnection c) {
